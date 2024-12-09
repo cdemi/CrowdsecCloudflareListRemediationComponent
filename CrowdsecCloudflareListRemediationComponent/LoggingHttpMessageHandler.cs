@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Text.Json;
 
 namespace CrowdsecCloudflareListRemediationComponent
 {
@@ -33,19 +32,19 @@ namespace CrowdsecCloudflareListRemediationComponent
                     "HTTP Request:\n" +
                     "Method: {Method}\n" +
                     "Url: {Url}\n" +
-                    "Headers: {Headers}\n" +
+                    //"Headers: {Headers}\n" +
                     "Body: {Body}\n" +
                     "\nHTTP Response:\n" +
                     "StatusCode: {StatusCode}\n" +
-                    "Response Headers: {ResponseHeaders}\n" +
+                    //"Response Headers: {ResponseHeaders}\n" +
                     "Response Body: {ResponseBody}\n" +
                     "Duration: {Duration}",
                     requestInfo.Method,
                     requestInfo.Url,
-                    JsonSerializer.Serialize(requestInfo.Headers),
+                    //JsonSerializer.Serialize(requestInfo.Headers),
                     requestInfo.Body,
                     responseInfo.StatusCode,
-                    JsonSerializer.Serialize(responseInfo.Headers),
+                    //JsonSerializer.Serialize(responseInfo.Headers),
                     responseInfo.Body,
                     responseInfo.Duration);
 
@@ -63,12 +62,12 @@ namespace CrowdsecCloudflareListRemediationComponent
                     "Exception during HTTP Request:\n" +
                     "Method: {Method}\n" +
                     "Url: {Url}\n" +
-                    "Headers: {Headers}\n" +
+                    //"Headers: {Headers}\n" +
                     "Body: {Body}\n" +
                     "Duration: {Duration}",
                     requestInfo.Method,
                     requestInfo.Url,
-                    JsonSerializer.Serialize(requestInfo.Headers),
+                    //JsonSerializer.Serialize(requestInfo.Headers),
                     requestInfo.Body,
                     responseInfo.Duration);
 

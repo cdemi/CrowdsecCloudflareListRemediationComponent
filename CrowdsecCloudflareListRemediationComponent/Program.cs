@@ -2,10 +2,8 @@ using CrowdsecCloudflareListRemediationComponent.ApiClients.Cloudflare;
 using CrowdsecCloudflareListRemediationComponent.ApiClients.Crowdsec;
 using CrowdsecCloudflareListRemediationComponent.Configurations;
 using Microsoft.Extensions.Options;
-using Polly;
-using Polly.Extensions.Http;
 using Refit;
-using System.Net;
+using Serilog;
 using System.Text.Json;
 
 namespace CrowdsecCloudflareListRemediationComponent
@@ -15,6 +13,14 @@ namespace CrowdsecCloudflareListRemediationComponent
         public static void Main(string[] args)
         {
             var builder = Host.CreateApplicationBuilder(args);
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .CreateLogger();
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog();
+
             builder.Services.AddHostedService<Worker>();
             builder.Services.Configure<Cloudflare>(builder.Configuration.GetSection(Cloudflare.ConfigurationSection));
             builder.Services.Configure<Crowdsec>(builder.Configuration.GetSection(Crowdsec.ConfigurationSection));
