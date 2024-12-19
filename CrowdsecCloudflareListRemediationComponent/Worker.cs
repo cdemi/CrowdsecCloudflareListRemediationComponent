@@ -68,7 +68,7 @@ namespace CrowdsecCloudflareListRemediationComponent
 
                         foreach (var listItemId in listItemsToAdd)
                         {
-                            cloudflareIPs.Add(listItemId.Ip, null);
+                            cloudflareIPs.TryAdd(listItemId.Ip, null);
                         }
                     }
                 }
